@@ -101,14 +101,12 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
 	{
 		case 'p':
 			arguments->printonly = 1;
-			printf("print only\n");
 			break;
 		case 'q':
 			arguments->silent = 1;
 			break;
 		case 'v':
 			arguments->verbose = 1;
-			printf("verbose on\n");
 			break;
 		case 's':
 			if (arg == NULL) break;
@@ -181,14 +179,14 @@ int open_seq(snd_seq_t** seq)
 
 	snd_seq_set_client_name(*seq, arguments.name);
 
-	if ((port_out_id = snd_seq_create_simple_port(*seq, "from ser MIDI out",
+	if ((port_out_id = snd_seq_create_simple_port(*seq, "MIDI out",
 					SND_SEQ_PORT_CAP_READ|SND_SEQ_PORT_CAP_SUBS_READ,
 SND_SEQ_PORT_TYPE_MIDI_GENERIC|SND_SEQ_PORT_TYPE_APPLICATION)) < 0)
 	{
 		fprintf(stderr, "Error creating sequencer port.\n");
 	}
 
-	if ((port_in_id = snd_seq_create_simple_port(*seq, "to ser MIDI in",
+	if ((port_in_id = snd_seq_create_simple_port(*seq, "MIDI in",
 					SND_SEQ_PORT_CAP_WRITE|SND_SEQ_PORT_CAP_SUBS_WRITE,
 SND_SEQ_PORT_TYPE_MIDI_GENERIC|SND_SEQ_PORT_TYPE_APPLICATION)) < 0)
 	{
